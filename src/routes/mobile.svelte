@@ -20,9 +20,6 @@
 			<OrbitControls />
 		</PerspectiveCamera>
 
-		<DirectionalLight shadow color={'white'} position={{ x: -15, y: 45, z: 20 }} />
-		<HemisphereLight skyColor={'white'} groundColor={'#ac844c'} intensity={0.4} />
-
 		<!-- Board Group -->
 		<Grid />
 	</Canvas>
