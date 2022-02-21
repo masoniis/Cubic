@@ -1,9 +1,10 @@
 <script>
-	import { CircleBufferGeometry, MeshStandardMaterial, BoxBufferGeometry, DoubleSide } from 'three';
+	import { CircleBufferGeometry, CylinderBufferGeometry, MeshStandardMaterial, BoxBufferGeometry, DoubleSide } from 'three';
 	import { Mesh, Group } from 'threlte';
 	import { onMount } from 'svelte';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
+    import {turn} from '$stores';
 
 	const scale = tweened(0, {
 		duration: 1100,
@@ -71,6 +72,14 @@
 				on:click={() => {
 					clickHandler(i);
 				}}
+			/>
+		{:else}
+			<Mesh
+				castShadow
+				geometry={new CylinderBufferGeometry(.25, .25, .25, 72)}
+                rotation={{x: 90, z:302}}
+				{position}
+				material={new MeshStandardMaterial({ color: '#ff3e00' })}
 			/>
 		{/if}
 	{/each}

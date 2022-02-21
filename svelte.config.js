@@ -1,5 +1,6 @@
 import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
+import path from 'path';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -12,6 +13,12 @@ const config = {
 		vite: {
 			ssr: {
 				noExternal: ['three']
+			},
+			resolve: {
+				alias: {
+					$components: path.resolve('./src/lib/components'),
+					$stores: path.resolve('./src/stores.js')
+				}
 			}
 		}
 	}
