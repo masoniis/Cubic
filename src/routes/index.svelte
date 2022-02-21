@@ -4,6 +4,7 @@
 	import { onMount } from 'svelte';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
+	import { Mesh } from 'three';
 
 	const scale = tweened(0, {
 		duration: 1100,
@@ -11,7 +12,7 @@
 	});
 
 	onMount(() => {
-		scale.set(3);
+		scale.set(1);
 	});
 
 	function reverse() {
@@ -28,7 +29,7 @@
 		Scale animaiton: {$scale}
 	</div>
 
-	{#if $scale === 3 || $scale === -3}
+	{#if $scale === 1 || $scale === -1}
 		<button
 			on:click={() => {
 				reverse();
@@ -44,24 +45,28 @@
 	<SC.Group>
 		<SC.Mesh
 			geometry={new THREE.BoxGeometry()}
-			scale={[0.15, $scale, 0.15]}
+			scale={[0.15, $scale * 3, 0.15]}
 			position={[0.5, 0, 0]}
 		/>
 		<SC.Mesh
 			geometry={new THREE.BoxGeometry()}
-			scale={[0.15, $scale, 0.15]}
+			scale={[0.15, $scale * 3, 0.15]}
 			position={[-0.5, 0, 0]}
 		/>
 		<SC.Mesh
 			geometry={new THREE.BoxGeometry()}
-			scale={[$scale, 0.15, 0.15]}
+			scale={[$scale * 3, 0.15, 0.15]}
 			position={[0, 0.5, 0]}
 		/>
 		<SC.Mesh
 			geometry={new THREE.BoxGeometry()}
-			scale={[$scale, 0.15, 0.15]}
+			scale={[$scale * 3, 0.15, 0.15]}
 			position={[0, -0.5, 0]}
 		/>
+	</SC.Group>
+
+	<SC.Group>
+		<SC.Mesh geometry={new THREE.BoxGeometry()} scale={[0.6 * $scale, 0.6 * $scale, 0.15]} />
 	</SC.Group>
 	<SC.PerspectiveCamera position={[3, 1, -5]} />
 	<SC.OrbitControls enableZoom={true} />
