@@ -10,7 +10,7 @@
 	import { onMount } from 'svelte';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
-	import { turnX } from '$stores';
+	import { turnX, winner } from '$stores';
 
 	const scale = tweened(0, {
 		duration: 1100,
@@ -37,16 +37,51 @@
 		{ position: { x: 1, y: -1 }, visible: true, shape: null }
 	];
 
+	const winningCombo = [
+		[0, 1, 2],
+		[3, 4, 5],
+		[6, 7, 8],
+		[0, 3, 6],
+		[1, 4, 7],
+		[2, 5, 8],
+		[0, 4, 8],
+		[2, 4, 6]
+	];
+
 	function clickHandler(e) {
 		squares[e].visible = false;
 
 		if ($turnX === true) {
 			squares[e].shape = 'x';
+		} else {
+			squares[e].shape = 'o';
 		}
 
 		$turnX = !$turnX;
 
 		newsquares = squares;
+
+		detectWin();
+	}
+
+	function detectWin() {
+		const boardStatus = squares.map(({ shape }) => shape);
+		console.log(boardStatus);
+
+		for (let i = 0; i < winningCombo.length; i++) {
+			const [a, b, c] = winningCombo[i];
+			if (
+				boardStatus[a] &&
+				boardStatus[a] === boardStatus[b] &&
+				boardStatus[a] === boardStatus[c]
+			) {
+				if (boardStatus[a] === 'x') {
+					$winner = "x won"
+				} else {
+					$winner = "o won"
+				}
+			}
+		}
 	}
 
 	$: newsquares = squares;

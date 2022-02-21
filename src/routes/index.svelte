@@ -1,5 +1,4 @@
 <script>
-	import { CircleBufferGeometry, MeshStandardMaterial, BoxBufferGeometry, DoubleSide } from 'three';
 	import {
 		Canvas,
 		DirectionalLight,
@@ -9,31 +8,15 @@
 		PerspectiveCamera,
 		Group
 	} from 'threlte';
-    import Grid from "$lib/components/Grid.svelte"
-    import GridSlots from '$lib/components/GridSlots.svelte';
+	import Grid from '$lib/components/Grid.svelte';
+	import GridSlots from '$lib/components/GridSlots.svelte';
 	import { onMount } from 'svelte';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
-
-	const scale = tweened(0, {
-		duration: 1100,
-		easing: cubicOut
-	});
-
-	onMount(() => {
-		scale.set(1);
-	});
-
-	function reverse() {
-		scale.set($scale * -1);
-	}
-
-	let show = true;
-	function click() {
-		console.log('BAR CLICKED I REPEAT BAR CLICKED');
-		show = false;
-	}
+	import { winner } from '$stores';
 </script>
+
+<h1 class="absolute block z-[100] top-20 text-center mx-auto container">STATUS: {$winner}</h1>
 
 <div>
 	<Canvas>
