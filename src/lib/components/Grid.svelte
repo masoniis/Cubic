@@ -20,6 +20,8 @@
 	onDestroy(() => {
 		scale.set(0);
 	});
+
+	let boardColor = '#615958'
 </script>
 
 <Group>
@@ -27,24 +29,24 @@
 		castShadow
 		geometry={new BoxBufferGeometry(0.15, $scale * 2.8, 0.15)}
 		position={{ x: 0.5 }}
-		material={new MeshStandardMaterial({ color: '#ff3e00' })}
+		material={new MeshStandardMaterial({ color: boardColor })}
 	/>
 	<Mesh
 		castShadow
 		geometry={new BoxBufferGeometry(0.15, $scale * 2.8, 0.15)}
 		position={{ x: -0.5 }}
-		material={new MeshStandardMaterial({ color: '#ff3e00' })}
+		material={new MeshStandardMaterial({ color: boardColor })}
 	/>
 	<Mesh
 		castShadow
 		geometry={new BoxBufferGeometry($scale * 2.8, 0.15, 0.15)}
 		position={{ y: 0.5 }}
-		material={new MeshStandardMaterial({ color: '#ff3e00' })}
+		material={new MeshStandardMaterial({ color: boardColor })}
 	/>
 	<Mesh
 		castShadow
 		position={{ y: -0.5 }}
 		geometry={new BoxBufferGeometry($scale * 2.8, 0.15, 0.15)}
-		material={new MeshStandardMaterial({ color: '#ff3e00' })}
+		material={new MeshStandardMaterial({ color: boardColor })}
 	/>
 </Group>

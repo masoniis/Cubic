@@ -110,7 +110,7 @@
 				castShadow
 				geometry={new BoxBufferGeometry($scale * 0.6, $scale * 0.6, 0.15)}
 				{position}
-				material={new MeshStandardMaterial({ color: '#ff3e00' })}
+				material={new MeshStandardMaterial({ color: '#d1c2c0' })}
 				interactive
 				on:click={() => {
 					clickHandler(i);
@@ -122,21 +122,21 @@
 				geometry={new BoxBufferGeometry($scale * 0.6, $scale * 0.2, 0.15)}
 				{position}
 				rotation={{ z: 40 }}
-				material={new MeshStandardMaterial({ color: '#ff3e00' })}
+				material={new MeshStandardMaterial({ color: '#c72e26' })}
 			/>
 			<Mesh
 				castShadow
 				geometry={new BoxBufferGeometry($scale * 0.6, $scale * 0.2, 0.15)}
 				{position}
 				rotation={{ z: -40 }}
-				material={new MeshStandardMaterial({ color: '#ff3e00' })}
+				material={new MeshStandardMaterial({ color: '#c72e26' })}
 			/>
 		{:else}
 			<Mesh
 				castShadow
 				geometry={new CylinderBufferGeometry(0.25, 0.25, 0.25, 72)}
 				{position}
-				material={new MeshStandardMaterial({ color: '#ff3e00' })}
+				material={new MeshStandardMaterial({ color: '#4c79c7' })}
 			/>
 		{/if}
 	{/each}
