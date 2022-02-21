@@ -84,13 +84,17 @@
 				}
 			}
 		}
+
+		if (boardStatus.every((element) => element !== null)) {
+			return ($winner = 'There was a draw!');
+		}
 	}
 
 	export function reset() {
-		console.log("reseRestt")
 		for (let i = 0; i < squares.length; i++) {
 			squares[i].shape = null;
 			squares[i].visible = true;
+			$winner = undefined;
 		}
 
 		newsquares = squares;
