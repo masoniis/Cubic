@@ -36,10 +36,6 @@
 <flex
 	class="flex flex-col mx-auto relative w-full top-4 bg-slate-50 z-[100] max-w-2xl py-4 text-2xl"
 >
-	<div class="w-full text-center rounded-full max-w-2xl z-[100] block">
-		Scale animaiton: {$scale}
-	</div>
-
 	{#if $scale === 1 || $scale === -1}
 		<button
 			on:click={() => {
@@ -47,13 +43,9 @@
 			}}
 			class="z-[100]"
 		>
-			Reverse
+			Reverse Animation
 		</button>
 	{/if}
-
-	<div class="text-center">
-		{pointer.x} and {pointer.y}
-	</div>
 </flex>
 
 <SC.Canvas antialias background={new THREE.Color('papayawhip')}>

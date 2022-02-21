@@ -34,6 +34,7 @@
   "type": "module",
   "dependencies": {
     "svelte-cubed": "^0.2.1",
-    "three": "^0.137.5"
+    "three": "^0.137.5",
+    "threlte": "^2.2.1"
   }
 }
