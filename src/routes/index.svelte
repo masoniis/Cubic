@@ -1,6 +1,16 @@
 <script>
-	import * as THREE from 'three';
-	import * as SC from 'svelte-cubed';
+	import { CircleBufferGeometry, MeshStandardMaterial, BoxBufferGeometry, DoubleSide } from 'three';
+	import {
+		Canvas,
+		DirectionalLight,
+		HemisphereLight,
+		Mesh,
+		OrbitControls,
+		PerspectiveCamera,
+		Group
+	} from 'threlte';
+    import Grid from "$lib/components/Grid.svelte"
+    import GridSlots from '$lib/components/GridSlots.svelte';
 	import { onMount } from 'svelte';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
@@ -18,63 +28,36 @@
 		scale.set($scale * -1);
 	}
 
-	const raycaster = new THREE.Raycaster();
-	const pointer = new THREE.Vector2();
-
-	function handleMousedown() {
-		console.log('clqiued');
-	}
-
-	function handleMousemove(event) {
-		pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
-		pointer.y = (event.clientY / window.innerWidth) * 2 - 1;
+	let show = true;
+	function click() {
+		console.log('BAR CLICKED I REPEAT BAR CLICKED');
+		show = false;
 	}
 </script>
 
-<svelte:window on:mousedown={handleMousedown} on:mousemove={handleMousemove} />
+<div>
+	<Canvas>
+		<PerspectiveCamera position={{ x: 3, y: -1, z: 5 }}>
+			<OrbitControls />
+		</PerspectiveCamera>
 
-<flex
-	class="flex flex-col mx-auto relative w-full top-4 bg-slate-50 z-[100] max-w-2xl py-4 text-2xl"
->
-	{#if $scale === 1 || $scale === -1}
-		<button
-			on:click={() => {
-				reverse();
-			}}
-			class="z-[100]"
-		>
-			Reverse Animation
-		</button>
-	{/if}
-</flex>
+		<DirectionalLight shadow color={'white'} position={{ x: -15, y: 45, z: 20 }} />
+		<HemisphereLight skyColor={'white'} groundColor={'#ac844c'} intensity={0.4} />
 
-<SC.Canvas antialias background={new THREE.Color('papayawhip')}>
-	<SC.Group>
-		<SC.Mesh
-			geometry={new THREE.BoxGeometry()}
-			scale={[0.15, $scale * 3, 0.15]}
-			position={[0.5, 0, 0]}
-		/>
-		<SC.Mesh
-			geometry={new THREE.BoxGeometry()}
-			scale={[0.15, $scale * 3, 0.15]}
-			position={[-0.5, 0, 0]}
-		/>
-		<SC.Mesh
-			geometry={new THREE.BoxGeometry()}
-			scale={[$scale * 3, 0.15, 0.15]}
-			position={[0, 0.5, 0]}
-		/>
-		<SC.Mesh
-			geometry={new THREE.BoxGeometry()}
-			scale={[$scale * 3, 0.15, 0.15]}
-			position={[0, -0.5, 0]}
-		/>
-	</SC.Group>
+		<!-- Board Group -->
+		<Grid />
 
-	<SC.Group>
-		<SC.Mesh geometry={new THREE.BoxGeometry()} scale={[0.6 * $scale, 0.6 * $scale, 0.15]} />
-	</SC.Group>
-	<SC.PerspectiveCamera position={[3, 1, -5]} />
-	<SC.OrbitControls enableZoom={true} />
-</SC.Canvas>
+		<!-- Board groups -->
+		<GridSlots />
+	</Canvas>
+</div>
+
+<style>
+	div {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>
