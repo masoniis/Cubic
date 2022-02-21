@@ -107,10 +107,6 @@
 				{position}
 				rotation={{ z: 40 }}
 				material={new MeshStandardMaterial({ color: '#ff3e00' })}
-				interactive
-				on:click={() => {
-					clickHandler(i);
-				}}
 			/>
 			<Mesh
 				castShadow
@@ -118,10 +114,6 @@
 				{position}
 				rotation={{ z: -40 }}
 				material={new MeshStandardMaterial({ color: '#ff3e00' })}
-				interactive
-				on:click={() => {
-					clickHandler(i);
-				}}
 			/>
 		{:else}
 			<Mesh

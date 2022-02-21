@@ -4,7 +4,7 @@
 		Mesh,
 		Group
 	} from 'threlte';
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 
@@ -15,6 +15,10 @@
 
 	onMount(() => {
 		scale.set(1);
+	});
+
+	onDestroy(() => {
+		scale.set(0);
 	});
 </script>
 
