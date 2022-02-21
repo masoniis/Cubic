@@ -4,7 +4,6 @@
 	import { onMount } from 'svelte';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
-	import { Mesh } from 'three';
 
 	const scale = tweened(0, {
 		duration: 1100,
@@ -20,7 +19,19 @@
 	}
 
 	const raycaster = new THREE.Raycaster();
+	const pointer = new THREE.Vector2();
+
+	function handleMousedown() {
+		console.log('clqiued');
+	}
+
+	function handleMousemove(event) {
+		pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+		pointer.y = (event.clientY / window.innerWidth) * 2 - 1;
+	}
 </script>
+
+<svelte:window on:mousedown={handleMousedown} on:mousemove={handleMousemove} />
 
 <flex
 	class="flex flex-col mx-auto relative w-full top-4 bg-slate-50 z-[100] max-w-2xl py-4 text-2xl"
@@ -36,9 +47,13 @@
 			}}
 			class="z-[100]"
 		>
-			Reverse Animation
+			Reverse
 		</button>
 	{/if}
+
+	<div class="text-center">
+		{pointer.x} and {pointer.y}
+	</div>
 </flex>
 
 <SC.Canvas antialias background={new THREE.Color('papayawhip')}>
