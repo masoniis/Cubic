@@ -3,6 +3,7 @@
 		class="flex twcontainer justify-between mx-auto w-full top-4 z-[100] text-2xlfixed"
 	>
 		<a href="/"> Home</a>
+				<a href="/mobile"> Mobile friend</a>
 	</flex>
 </main>
 

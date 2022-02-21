@@ -16,16 +16,6 @@
 	onMount(() => {
 		scale.set(1);
 	});
-
-	function reverse() {
-		scale.set($scale * -1);
-	}
-
-	let show = true;
-	function click() {
-		console.log('BAR CLICKED I REPEAT BAR CLICKED');
-		show = false;
-	}
 </script>
 
 <Group>
