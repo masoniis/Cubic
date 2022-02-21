@@ -17,7 +17,7 @@ const config = {
 			resolve: {
 				alias: {
 					$components: path.resolve('./src/lib/components'),
-					$stores: path.resolve('./src/stores.js')
+					$stores: path.resolve('./src/stores.ts')
 				}
 			}
 		}

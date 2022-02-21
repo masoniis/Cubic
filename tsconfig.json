@@ -41,7 +41,7 @@
 				"src/lib/"
 			],
 			"$stores": [
-				"src/stores.js"
+				"src/stores.ts"
 			]
 		}
 	},
