@@ -3,7 +3,6 @@
 		class="flex twcontainer justify-between mx-auto w-full top-4 z-[100] text-2xlfixed"
 	>
 		<a href="/"> Home</a>
-		<a href="/threlte"> Threlte</a>
 	</flex>
 </main>
 
