@@ -14,31 +14,30 @@
 		scale.set(3);
 	});
 
-	function replay() {
-		scale.set(0);
-		setTimeout(() => {
-			scale.set(3);
-		}, 1100);
+	function reverse() {
+		scale.set($scale * -1);
 	}
 
 	const raycaster = new THREE.Raycaster();
 </script>
 
-<flex class="flex justify-center">
-	<div
-		class="text-3xl w-full text-center top-4 bg-slate-200 rounded-full max-w-2xl py-4 z-[100] block absolute"
-	>
+<flex
+	class="flex flex-col mx-auto relative w-full top-4 bg-slate-50 z-[100] max-w-2xl py-4 text-2xl"
+>
+	<div class="w-full text-center rounded-full max-w-2xl z-[100] block">
 		Scale animaiton: {$scale}
 	</div>
 
-	<button
-		on:click={() => {
-			replay();
-		}}
-		class="z-[100] text-3xl"
-	>
-		Reset
-	</button>
+	{#if $scale === 3 || $scale === -3}
+		<button
+			on:click={() => {
+				reverse();
+			}}
+			class="z-[100]"
+		>
+			Reverse Animation
+		</button>
+	{/if}
 </flex>
 
 <SC.Canvas antialias background={new THREE.Color('papayawhip')}>
