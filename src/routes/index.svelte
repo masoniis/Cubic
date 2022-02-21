@@ -13,9 +13,15 @@
 	onMount(() => {
 		scale.set(3);
 	});
+
+	const raycaster = new THREE.Raycaster();
 </script>
 
-<div id="info">{$scale}</div>
+<flex class="flex justify-center">
+	<div class="text-3xl w-full text-center top-4 bg-slate-200 rounded-full max-w-2xl py-4 z-[100] block absolute">
+		Scale animaiton: {$scale}
+	</div>
+</flex>
 
 <SC.Canvas antialias background={new THREE.Color('papayawhip')}>
 	<SC.Group>
@@ -43,14 +49,3 @@
 	<SC.PerspectiveCamera position={[3, 1, -5]} />
 	<SC.OrbitControls enableZoom={true} />
 </SC.Canvas>
-
-<style>
-	#info {
-		position: absolute;
-		top: 10px;
-		width: 100%;
-		text-align: center;
-		z-index: 100;
-		display: block;
-	}
-</style>
