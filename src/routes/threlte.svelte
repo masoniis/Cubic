@@ -9,6 +9,8 @@
 		PerspectiveCamera,
 		Group
 	} from 'threlte';
+    import Grid from "$lib/components/Grid.svelte"
+    import GridSlots from '$lib/components/GridSlots.svelte';
 	import { onMount } from 'svelte';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
@@ -25,43 +27,28 @@
 	function reverse() {
 		scale.set($scale * -1);
 	}
+
+	let show = true;
+	function click() {
+		console.log('BAR CLICKED I REPEAT BAR CLICKED');
+		show = false;
+	}
 </script>
 
 <div>
 	<Canvas>
 		<PerspectiveCamera position={{ x: 3, y: -1, z: 5 }}>
-			<OrbitControls autoRotate />
+			<OrbitControls />
 		</PerspectiveCamera>
 
 		<DirectionalLight shadow color={'white'} position={{ x: -15, y: 45, z: 20 }} />
 		<HemisphereLight skyColor={'white'} groundColor={'#ac844c'} intensity={0.4} />
 
-		<Group>
-			<Mesh
-				castShadow
-				geometry={new BoxBufferGeometry(0.15, $scale * 3, 0.15)}
-				position={{ x: 0.5 }}
-				material={new MeshStandardMaterial({ color: '#ff3e00' })}
-			/>
-			<Mesh
-				castShadow
-				geometry={new BoxBufferGeometry(0.15, $scale * 3, 0.15)}
-				position={{ x: -0.5 }}
-				material={new MeshStandardMaterial({ color: '#ff3e00' })}
-			/>
-			<Mesh
-				castShadow
-				geometry={new BoxBufferGeometry($scale * 3, 0.15, 0.15)}
-				position={{ y: 0.5 }}
-				material={new MeshStandardMaterial({ color: '#ff3e00' })}
-			/>
-			<Mesh
-				castShadow
-				position={{ y: -0.5 }}
-				geometry={new BoxBufferGeometry($scale * 3, 0.15, 0.15)}
-				material={new MeshStandardMaterial({ color: '#ff3e00' })}
-			/>
-		</Group>
+		<!-- Board Group -->
+		<Grid />
+
+		<!-- Board groups -->
+		<GridSlots />
 	</Canvas>
 </div>
 
