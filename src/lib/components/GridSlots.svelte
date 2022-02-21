@@ -70,6 +70,18 @@
 				castShadow
 				geometry={new BoxBufferGeometry($scale * 0.6, $scale * 0.2, 0.15)}
 				{position}
+				rotation={{ z: 45 }}
+				material={new MeshStandardMaterial({ color: '#ff3e00' })}
+				interactive
+				on:click={() => {
+					clickHandler(i);
+				}}
+			/>
+			<Mesh
+				castShadow
+				geometry={new BoxBufferGeometry($scale * 0.6, $scale * 0.2, 0.15)}
+				{position}
+				rotation={{ z: -45 }}
 				material={new MeshStandardMaterial({ color: '#ff3e00' })}
 				interactive
 				on:click={() => {
