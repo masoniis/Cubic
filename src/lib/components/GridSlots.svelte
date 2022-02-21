@@ -134,7 +134,8 @@
 		{:else}
 			<Mesh
 				castShadow
-				geometry={new CylinderBufferGeometry(0.25, 0.25, 0.25, 72)}
+				rotation={{ x: 1.56 }}
+				geometry={new CylinderBufferGeometry(0.25, 0.25, 0.15, 72)}
 				{position}
 				material={new MeshStandardMaterial({ color: '#4c79c7' })}
 			/>
