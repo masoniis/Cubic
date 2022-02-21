@@ -14,13 +14,31 @@
 		scale.set(3);
 	});
 
+	function replay() {
+		scale.set(0);
+		setTimeout(() => {
+			scale.set(3);
+		}, 1100);
+	}
+
 	const raycaster = new THREE.Raycaster();
 </script>
 
 <flex class="flex justify-center">
-	<div class="text-3xl w-full text-center top-4 bg-slate-200 rounded-full max-w-2xl py-4 z-[100] block absolute">
+	<div
+		class="text-3xl w-full text-center top-4 bg-slate-200 rounded-full max-w-2xl py-4 z-[100] block absolute"
+	>
 		Scale animaiton: {$scale}
 	</div>
+
+	<button
+		on:click={() => {
+			replay();
+		}}
+		class="z-[100] text-3xl"
+	>
+		Reset
+	</button>
 </flex>
 
 <SC.Canvas antialias background={new THREE.Color('papayawhip')}>
