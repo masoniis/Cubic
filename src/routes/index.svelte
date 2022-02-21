@@ -14,9 +14,16 @@
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 	import { winner } from '$stores';
+
+	let gridSlots;
+
+
 </script>
 
 <h1 class="absolute block z-[100] top-20 text-center mx-auto container">STATUS: {$winner}</h1>
+<button on:click={() => {gridSlots.reset()}} class="absolute block z-[100] top-28 text-center mx-auto container">
+	RESET
+</button>
 
 <div>
 	<Canvas>
@@ -31,7 +38,7 @@
 		<Grid />
 
 		<!-- Board groups -->
-		<GridSlots />
+		<GridSlots bind:this={gridSlots} />
 	</Canvas>
 </div>
 

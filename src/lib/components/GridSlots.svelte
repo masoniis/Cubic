@@ -49,24 +49,26 @@
 	];
 
 	function clickHandler(e) {
-		squares[e].visible = false;
-
-		if ($turnX === true) {
-			squares[e].shape = 'x';
+		if ($winner === 'x won' || $winner === 'o won') {
 		} else {
-			squares[e].shape = 'o';
+			squares[e].visible = false;
+
+			if ($turnX === true) {
+				squares[e].shape = 'x';
+			} else {
+				squares[e].shape = 'o';
+			}
+
+			$turnX = !$turnX;
+
+			newsquares = squares;
+
+			detectWin();
 		}
-
-		$turnX = !$turnX;
-
-		newsquares = squares;
-
-		detectWin();
 	}
 
 	function detectWin() {
 		const boardStatus = squares.map(({ shape }) => shape);
-		console.log(boardStatus);
 
 		for (let i = 0; i < winningCombo.length; i++) {
 			const [a, b, c] = winningCombo[i];
@@ -76,12 +78,22 @@
 				boardStatus[a] === boardStatus[c]
 			) {
 				if (boardStatus[a] === 'x') {
-					$winner = "x won"
+					$winner = 'x won';
 				} else {
-					$winner = "o won"
+					$winner = 'o won';
 				}
 			}
 		}
+	}
+
+	export function reset() {
+		console.log("reseRestt")
+		for (let i = 0; i < squares.length; i++) {
+			squares[i].shape = null;
+			squares[i].visible = true;
+		}
+
+		newsquares = squares;
 	}
 
 	$: newsquares = squares;
