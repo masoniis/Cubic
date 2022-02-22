@@ -26,7 +26,7 @@
 <div>
 	<Canvas>
 		<PerspectiveCamera position={{ x: 0, y: 0, z: 5.5 }}>
-			<OrbitControls autoRotate />
+			<OrbitControls autoRotate enableZoom={false} />
 		</PerspectiveCamera>
 
 		<DirectionalLight shadow color={'white'} position={{ x: -15, y: 45, z: 20 }} />
