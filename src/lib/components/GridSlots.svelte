@@ -129,7 +129,8 @@
 
 		if (
 			boardStatus.every((element) => element !== null) &&
-			($winner != 'X won the game.' || $winner != 'O won the game.')
+			$winner != 'X won the game.' &&
+			$winner != 'O won the game.'
 		) {
 			return ($winner = 'There was a draw!');
 		}
