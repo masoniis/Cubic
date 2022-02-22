@@ -127,7 +127,7 @@
 			}
 		}
 
-		if (boardStatus.every((element) => element !== null)) {
+		if (boardStatus.every((element) => element !== null) && ($winner != "x won" || $winner != "o won")) {
 			return ($winner = 'There was a draw!');
 		}
 	}
