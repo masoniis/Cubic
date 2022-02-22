@@ -29,7 +29,7 @@
 		gridSlots.reset();
 	}}
 >
-	{$winner}
+	{$winner} won the game.
 </WinModal>
 
 <div>
