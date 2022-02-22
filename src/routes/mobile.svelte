@@ -1,9 +1,5 @@
 <script>
-	import {
-		Canvas,
-		OrbitControls,
-		PerspectiveCamera,
-	} from 'threlte';
+	import { Canvas, OrbitControls, PerspectiveCamera } from 'threlte';
 	import Grid from '$lib/components/Grid.svelte';
 </script>
 

@@ -1,9 +1,6 @@
 <script>
 	import { CircleBufferGeometry, MeshStandardMaterial, BoxBufferGeometry, DoubleSide } from 'three';
-	import {
-		Mesh,
-		Group
-	} from 'threlte';
+	import { Mesh, Group } from 'threlte';
 	import { onMount, onDestroy } from 'svelte';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
@@ -21,7 +18,7 @@
 		scale.set(0);
 	});
 
-	let boardColor = '#615958'
+	let boardColor = '#615958';
 </script>
 
 <Group>

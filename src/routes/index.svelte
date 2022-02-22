@@ -3,22 +3,23 @@
 		Canvas,
 		DirectionalLight,
 		HemisphereLight,
-		Mesh,
 		OrbitControls,
-		PerspectiveCamera,
-		Group
+		PerspectiveCamera
 	} from 'threlte';
 	import Grid from '$lib/components/Grid.svelte';
 	import GridSlots from '$lib/components/GridSlots.svelte';
 	import { winner } from '$stores';
 
 	let gridSlots;
-
-
 </script>
 
 <h1 class="absolute block z-[100] top-20 text-center mx-auto container">STATUS: {$winner}</h1>
-<button on:click={() => {gridSlots.reset()}} class="absolute block z-[100] top-28 text-center mx-auto container">
+<button
+	on:click={() => {
+		gridSlots.reset();
+	}}
+	class="absolute block z-[100] top-28 text-center mx-auto container"
+>
 	RESET
 </button>
 
