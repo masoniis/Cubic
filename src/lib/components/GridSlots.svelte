@@ -120,16 +120,16 @@
 				boardStatus[a] === boardStatus[c]
 			) {
 				if (boardStatus[a] === 'x') {
-					$winner = 'X';
+					$winner = 'X won the game.';
 				} else {
-					$winner = 'O';
+					$winner = 'O won the game.';
 				}
 			}
 		}
 
 		if (
 			boardStatus.every((element) => element !== null) &&
-			($winner != 'x won' || $winner != 'o won')
+			($winner != 'X won the game.' || $winner != 'O won the game.')
 		) {
 			return ($winner = 'There was a draw!');
 		}

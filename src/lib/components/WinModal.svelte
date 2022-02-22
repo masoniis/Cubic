@@ -9,11 +9,13 @@
 		showModal = !showModal;
 	}
 
-	$: if ($winner === 'X') {
+	$: if ($winner === 'X won the game.') {
 		background = 'bg-red-400';
-	} else {
+	} else if ($winner === 'O won the game.') {
 		background = 'bg-blue-300';
-	}
+	} else {
+        background = 'bg-slate-200'
+    }
 </script>
 
 {#if showModal}
