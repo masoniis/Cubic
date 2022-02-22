@@ -8,20 +8,29 @@
 	} from 'threlte';
 	import Grid from '$lib/components/Grid.svelte';
 	import GridSlots from '$lib/components/GridSlots.svelte';
+	import WinModal from '$components/WinModal.svelte';
 	import { winner } from '$stores';
+
+	let modal;
+
+	$: {
+		if ($winner != undefined) {
+			console.log('winner detected');
+			modal.toggleModal();
+		}
+	}
 
 	let gridSlots;
 </script>
 
-<h1 class="absolute block z-[100] top-20 text-center mx-auto container">STATUS: {$winner}</h1>
-<button
+<WinModal
+	bind:this={modal}
 	on:click={() => {
 		gridSlots.reset();
 	}}
-	class="absolute block z-[100] top-28 text-center mx-auto container"
 >
-	RESET
-</button>
+	{$winner}
+</WinModal>
 
 <div>
 	<Canvas>

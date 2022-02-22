@@ -120,9 +120,9 @@
 				boardStatus[a] === boardStatus[c]
 			) {
 				if (boardStatus[a] === 'x') {
-					$winner = 'x won';
+					$winner = 'x';
 				} else {
-					$winner = 'o won';
+					$winner = 'o';
 				}
 			}
 		}
