@@ -1,5 +1,5 @@
 import ioClient from "socket.io-client";
-const ENDPOINT = "http://localhost:3000";
+const ENDPOINT = "https://cubiconline.vercel.app/socket";
 
 const socket = ioClient(ENDPOINT)
 
