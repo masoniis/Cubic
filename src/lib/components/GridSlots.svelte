@@ -93,7 +93,9 @@
 		for (let i = 0; i < squares.length; i++) {
 			squares[i].shape = null;
 			squares[i].visible = true;
+			squares[i].tween = tweened(0, {duration: 500, easing: cubicOut});
 			$winner = undefined;
+
 		}
 
 		newsquares = squares;
