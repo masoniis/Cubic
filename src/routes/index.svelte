@@ -25,7 +25,7 @@
 
 <div>
 	<Canvas>
-		<PerspectiveCamera position={{ x: 3, y: -1, z: 5 }}>
+		<PerspectiveCamera position={{ x: 0, y: 0, z: 5.5 }}>
 			<OrbitControls autoRotate />
 		</PerspectiveCamera>
 
