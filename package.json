@@ -33,8 +33,10 @@
   },
   "type": "module",
   "dependencies": {
+    "pusher-js": "^7.0.6",
     "socket.io": "^4.4.1",
     "socket.io-client": "^4.4.1",
+    "sswr": "^1.7.0",
     "svelte-cubed": "^0.2.1",
     "three": "^0.137.5",
     "threlte": "^2.2.1"
