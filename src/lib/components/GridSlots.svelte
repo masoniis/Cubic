@@ -7,34 +7,24 @@
 		DoubleSide
 	} from 'three';
 	import { Mesh, Group } from 'threlte';
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 	import { turnX, winner } from '$stores';
+	import Oicon from '$components/O.svelte';
+	import Xicon from '$components/X.svelte';
 
-	const scale = tweened(0, {
-		duration: 1100,
-		easing: cubicOut
-	});
-
-	onMount(() => {
-		scale.set(1);
-	});
-
-	function reverse() {
-		scale.set($scale * -1);
-	}
 
 	const squares = [
-		{ position: { x: -1, y: 1 }, visible: true, shape: null },
-		{ position: { x: 0, y: 1 }, visible: true, shape: null },
-		{ position: { x: 1, y: 1 }, visible: true, shape: null },
-		{ position: { x: -1, y: 0 }, visible: true, shape: null },
-		{ position: { x: 0, y: 0 }, visible: true, shape: null },
-		{ position: { x: 1, y: 0 }, visible: true, shape: null },
-		{ position: { x: -1, y: -1 }, visible: true, shape: null },
-		{ position: { y: -1, x: 0 }, visible: true, shape: null },
-		{ position: { x: 1, y: -1 }, visible: true, shape: null }
+		{ position: { x: -1, y: 1 }, visible: true, shape: null, tween: tweened(0, {duration: 500, easing: cubicOut}) },
+		{ position: { x: 0, y: 1 }, visible: true, shape: null, tween: tweened(0, {duration: 500, easing: cubicOut}) },
+		{ position: { x: 1, y: 1 }, visible: true, shape: null, tween: tweened(0, {duration: 500, easing: cubicOut}) },
+		{ position: { x: -1, y: 0 }, visible: true, shape: null, tween: tweened(0, {duration: 500, easing: cubicOut}) },
+		{ position: { x: 0, y: 0 }, visible: true, shape: null, tween: tweened(0, {duration: 500, easing: cubicOut}) },
+		{ position: { x: 1, y: 0 }, visible: true, shape: null, tween: tweened(0, {duration: 500, easing: cubicOut}) },
+		{ position: { x: -1, y: -1 }, visible: true, shape: null, tween: tweened(0, {duration: 500, easing: cubicOut}) },
+		{ position: { y: -1, x: 0 }, visible: true, shape: null, tween: tweened(0, {duration: 500, easing: cubicOut}) },
+		{ position: { x: 1, y: -1 }, visible: true, shape: null, tween: tweened(0, {duration: 500, easing: cubicOut}) }
 	];
 
 	const winningCombo = [
@@ -53,6 +43,9 @@
 		} else {
 			squares[e].visible = false;
 
+			
+			tweener(e);
+
 			if ($turnX === true) {
 				squares[e].shape = 'x';
 			} else {
@@ -65,6 +58,14 @@
 
 			detectWin();
 		}
+	}
+
+	function tweener(e) {
+		console.log("Tween for index " + e)
+
+		squares[e].tween.set(1)
+
+		newsquares = squares;
 	}
 
 	function detectWin() {
@@ -104,11 +105,11 @@
 </script>
 
 <Group>
-	{#each newsquares as { position, shape }, i}
+	{#each newsquares as { position, shape, tween }, i}
 		{#if squares[i].visible}
 			<Mesh
 				castShadow
-				geometry={new BoxBufferGeometry($scale * 0.6, $scale * 0.6, 0.15)}
+				geometry={new BoxBufferGeometry(0.6, 0.6, 0.15)}
 				{position}
 				material={new MeshStandardMaterial({ color: '#d1c2c0' })}
 				interactive
@@ -117,28 +118,9 @@
 				}}
 			/>
 		{:else if shape === 'x'}
-			<Mesh
-				castShadow
-				geometry={new BoxBufferGeometry($scale * 0.6, $scale * 0.2, 0.15)}
-				{position}
-				rotation={{ z: 40 }}
-				material={new MeshStandardMaterial({ color: '#c72e26' })}
-			/>
-			<Mesh
-				castShadow
-				geometry={new BoxBufferGeometry($scale * 0.6, $scale * 0.2, 0.15)}
-				{position}
-				rotation={{ z: -40 }}
-				material={new MeshStandardMaterial({ color: '#c72e26' })}
-			/>
+			<Xicon {position} tween={tween} />
 		{:else}
-			<Mesh
-				castShadow
-				rotation={{ x: 1.56 }}
-				geometry={new CylinderBufferGeometry(0.25, 0.25, 0.15, 72)}
-				{position}
-				material={new MeshStandardMaterial({ color: '#4c79c7' })}
-			/>
+			<Oicon {position} tween={tween} />
 		{/if}
 	{/each}
 </Group>
