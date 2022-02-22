@@ -2,7 +2,7 @@
 	import { slide, fade } from 'svelte/transition';
 	import { winner } from '$stores';
 
-	let showModal = true;
+	let showModal;
 	let background;
 
 	export function toggleModal() {
