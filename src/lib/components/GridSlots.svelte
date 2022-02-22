@@ -61,8 +61,6 @@
 	}
 
 	function tweener(e) {
-		console.log("Tween for index " + e)
-
 		squares[e].tween.set(1)
 
 		newsquares = squares;
