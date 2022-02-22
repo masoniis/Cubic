@@ -14,17 +14,61 @@
 	import Oicon from '$components/O.svelte';
 	import Xicon from '$components/X.svelte';
 
-
 	const squares = [
-		{ position: { x: -1, y: 1 }, visible: true, shape: null, tween: tweened(0, {duration: 500, easing: cubicOut}) },
-		{ position: { x: 0, y: 1 }, visible: true, shape: null, tween: tweened(0, {duration: 500, easing: cubicOut}) },
-		{ position: { x: 1, y: 1 }, visible: true, shape: null, tween: tweened(0, {duration: 500, easing: cubicOut}) },
-		{ position: { x: -1, y: 0 }, visible: true, shape: null, tween: tweened(0, {duration: 500, easing: cubicOut}) },
-		{ position: { x: 0, y: 0 }, visible: true, shape: null, tween: tweened(0, {duration: 500, easing: cubicOut}) },
-		{ position: { x: 1, y: 0 }, visible: true, shape: null, tween: tweened(0, {duration: 500, easing: cubicOut}) },
-		{ position: { x: -1, y: -1 }, visible: true, shape: null, tween: tweened(0, {duration: 500, easing: cubicOut}) },
-		{ position: { y: -1, x: 0 }, visible: true, shape: null, tween: tweened(0, {duration: 500, easing: cubicOut}) },
-		{ position: { x: 1, y: -1 }, visible: true, shape: null, tween: tweened(0, {duration: 500, easing: cubicOut}) }
+		{
+			position: { x: -1, y: 1 },
+			visible: true,
+			shape: null,
+			tween: tweened(0, { duration: 500, easing: cubicOut })
+		},
+		{
+			position: { x: 0, y: 1 },
+			visible: true,
+			shape: null,
+			tween: tweened(0, { duration: 500, easing: cubicOut })
+		},
+		{
+			position: { x: 1, y: 1 },
+			visible: true,
+			shape: null,
+			tween: tweened(0, { duration: 500, easing: cubicOut })
+		},
+		{
+			position: { x: -1, y: 0 },
+			visible: true,
+			shape: null,
+			tween: tweened(0, { duration: 500, easing: cubicOut })
+		},
+		{
+			position: { x: 0, y: 0 },
+			visible: true,
+			shape: null,
+			tween: tweened(0, { duration: 500, easing: cubicOut })
+		},
+		{
+			position: { x: 1, y: 0 },
+			visible: true,
+			shape: null,
+			tween: tweened(0, { duration: 500, easing: cubicOut })
+		},
+		{
+			position: { x: -1, y: -1 },
+			visible: true,
+			shape: null,
+			tween: tweened(0, { duration: 500, easing: cubicOut })
+		},
+		{
+			position: { y: -1, x: 0 },
+			visible: true,
+			shape: null,
+			tween: tweened(0, { duration: 500, easing: cubicOut })
+		},
+		{
+			position: { x: 1, y: -1 },
+			visible: true,
+			shape: null,
+			tween: tweened(0, { duration: 500, easing: cubicOut })
+		}
 	];
 
 	const winningCombo = [
@@ -43,7 +87,6 @@
 		} else {
 			squares[e].visible = false;
 
-			
 			tweener(e);
 
 			if ($turnX === true) {
@@ -61,7 +104,7 @@
 	}
 
 	function tweener(e) {
-		squares[e].tween.set(1)
+		squares[e].tween.set(1);
 
 		newsquares = squares;
 	}
@@ -93,9 +136,8 @@
 		for (let i = 0; i < squares.length; i++) {
 			squares[i].shape = null;
 			squares[i].visible = true;
-			squares[i].tween = tweened(0, {duration: 500, easing: cubicOut});
+			squares[i].tween = tweened(0, { duration: 500, easing: cubicOut });
 			$winner = undefined;
-
 		}
 
 		newsquares = squares;
@@ -118,9 +160,9 @@
 				}}
 			/>
 		{:else if shape === 'x'}
-			<Xicon {position} tween={tween} />
+			<Xicon {position} {tween} />
 		{:else}
-			<Oicon {position} tween={tween} />
+			<Oicon {position} {tween} />
 		{/if}
 	{/each}
 </Group>
