@@ -10,9 +10,6 @@
 	} from 'threlte';
 	import Grid from '$lib/components/Grid.svelte';
 	import GridSlots from '$lib/components/GridSlots.svelte';
-	import { onMount } from 'svelte';
-	import { tweened } from 'svelte/motion';
-	import { cubicOut } from 'svelte/easing';
 	import { winner } from '$stores';
 
 	let gridSlots;
@@ -28,7 +25,7 @@
 <div>
 	<Canvas>
 		<PerspectiveCamera position={{ x: 3, y: -1, z: 5 }}>
-			<OrbitControls />
+			<OrbitControls autoRotate />
 		</PerspectiveCamera>
 
 		<DirectionalLight shadow color={'white'} position={{ x: -15, y: 45, z: 20 }} />
