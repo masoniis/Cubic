@@ -1,55 +1,59 @@
 <script lang="ts">
-	import { io } from '$lib/scripts/realtime';
 	import { onMount } from 'svelte';
+	import Pusher from 'pusher-js';
 
-	let textfield = '';
 	let username = 'username';
+	let message = '';
 	let messages = [];
 
 	onMount(() => {
+		Pusher.logToConsole = true;
 
-	});
+		var pusher = new Pusher('4f6df010eb7b0ea152a1', {
+			cluster: 'us3'
+		});
 
-	function sendMessage() {
-		const message = textfield.trim();
-		if (!message) return;
-
-	}
+		        const channel = pusher.subscribe('chat');
+        channel.bind('message', data => {
+            messages = [...messages, data];
+        });
+    })
+    const submit = async () => {
+        await fetch('http://localhost:8000/api/messages', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                username,
+                message
+            })
+        });
+        message = '';
+    }
 </script>
 
-<div class="h-screen w-screen bg-zinc-800">
-	<div class="h-full w-full max-w-md mx-auto bg-zinc-500 flex flex-col">
-		<header
-			class="px-6 py-4 border-b border-zinc-800 bg-zinc-700 text-white shrink-0 flex items-center justify-between"
-		>
-			<span class="font-bold text-xl">My Chat app</span>
-			<span>{username}</span>
-		</header>
-
-		<div class="h-full w-full p-4">
-			{#each messages as message}
-				<div class="bg-zinc-300 rounded-xl rounded-tl-none px-4 py-3 my-4 w-fit">
-					<span class="flex items-center space-between gap-4">
-						<b>{message.from}</b>
-						<i>{message.time}</i>
-					</span>
-					{message.message}
-				</div>
-			{/each}
-		</div>
-
-		<form
-			action="#"
-			on:submit|preventDefault={sendMessage}
-			class="px-6 py-4 border-t border-zinc-800 bg-zinc-700 text-white shrink-0 flex items-center"
-		>
-			<input
-				type="text"
-				bind:value={textfield}
-				placeholder="Type something..."
-				class="bg-transparent border-none px-4 py-3 w-full"
-			/>
-			<button type="submit" class="shrink-0 border border-white rounded-lg px-4 py-3">Send</button>
-		</form>
-	</div>
+<div class="container pt-24">
+    <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
+        <div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+            <input class="fs-5 fw-semibold" bind:value={username}/>
+        </div>
+        <div class="list-group list-group-flush border-bottom scrollarea">
+            {#each messages as msg}
+                <div class="list-group-item list-group-item-action py-3 lh-tight">
+                    <div class="d-flex w-100 align-items-center justify-content-between">
+                        <strong class="mb-1">{msg.username}</strong>
+                    </div>
+                    <div class="col-10 mb-1 small">{msg.message}</div>
+                </div>
+            {/each}
+        </div>
+    </div>
+    <form on:submit|preventDefault={submit}>
+        <input class="form-control" placeholder="Write a message" bind:value={message}/>
+    </form>
 </div>
+
+<style>
+    .scrollarea {
+        min-height: 500px;
+    }
+</style>
